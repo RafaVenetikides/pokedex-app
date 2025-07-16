@@ -38,9 +38,7 @@ extension PokemonListViewController: PokemonListViewModelDelegate {
     }
     
     func didFaildWithError(_ message: String) {
-        // TODO: Uncomment after detail view creation
-//        self.showAlert(message: "Erro ao carregar a lista \(message)")
-        print(message)
+        self.showAlert(message: "Erro ao carregar a lista \(message)")
     }
 }
 
@@ -62,6 +60,7 @@ extension PokemonListViewController: UITableViewDataSource {
 extension PokemonListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let pokemon = viewModel.getPokemon(at: indexPath.row)
-        // TODO: Add selection navigation
+        let detailVC = PokemonDetailViewController(url: pokemon.pokemonUrl)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

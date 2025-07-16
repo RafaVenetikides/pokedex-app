@@ -10,7 +10,7 @@ import Foundation
 protocol PokemonServiceProtocol {
     func fetchPokemonList(completion: @escaping (Result<[Pokemon], Error>) -> Void)
     
-    // TODO: Add fetch pokemon detail
+    func fetchPokemonDetail(from url: URL, completion: @escaping(Result<PokemonDetail, Error>) -> Void)
 }
 
 final class PokemonService: PokemonServiceProtocol {
@@ -19,19 +19,37 @@ final class PokemonService: PokemonServiceProtocol {
     func fetchPokemonList(completion: @escaping (Result<[Pokemon], Error>) -> Void) {
         let urlString = "https://pokeapi.co/api/v2/pokemon?limit=151"
         
-        networkClient.fetch(from: urlString, decoteTo: PokemonListResponse.self) { result in
+        func performRequest(retryCount: Int = 1) {
+            networkClient.fetch(from: urlString, decoteTo: PokemonListResponse.self) { result in
+                switch result {
+                case .success(let response):
+                    let pokemons = response.results.map { $0.toDomainModel() }
+                    completion(.success(pokemons))
+                case .failure(let error):
+                    print("❌ Falha na requisição: \(error.localizedDescription)")
+                    if retryCount > 0 {
+                        print("🔁 Tentando novamente...")
+                        performRequest(retryCount: retryCount - 1)
+                    } else {
+                        completion(.failure(error))
+                    }
+                }
+            }
+        }
+        
+        performRequest(retryCount: 3)
+    }
+    
+    func fetchPokemonDetail(from url: URL, completion: @escaping (Result<PokemonDetail, any Error>) -> Void) {
+        networkClient.fetch(from: url.absoluteString, decoteTo: PokemonDetailResponse.self) { result in
             switch result {
             case .success(let response):
-                let pokemons = response.results.map{ $0.toDomainModel() }
-                completion(.success(pokemons))
+                completion(.success(response.toDomainModel()))
             case .failure(let error):
                 completion(.failure(error))
             }
-
         }
     }
-    
-    // TODO: Add pokemon detail
 }
 
 enum ServiceError: Error {
