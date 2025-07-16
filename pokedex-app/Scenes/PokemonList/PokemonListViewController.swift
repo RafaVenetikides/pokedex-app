@@ -20,6 +20,28 @@ class PokemonListViewController: UIViewController {
         tableView.register(PokemonTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         return tableView
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.delegate = self
+        view = tableView
+        
+        viewModel.fetchPokemons()
+    }
+}
+
+extension PokemonListViewController: PokemonListViewModelDelegate {
+    func didUpdatePokemonList() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didFaildWithError(_ message: String) {
+        // TODO: Uncomment after detail view creation
+//        self.showAlert(message: "Erro ao carregar a lista \(message)")
+        print(message)
+    }
 }
 
 extension PokemonListViewController: UITableViewDataSource {
@@ -32,7 +54,7 @@ extension PokemonListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         let pokemon = viewModel.getPokemon(at: indexPath.row)
-        // TODO: Configure
+        cell.configure(with: pokemon)
         return cell
     }
 }

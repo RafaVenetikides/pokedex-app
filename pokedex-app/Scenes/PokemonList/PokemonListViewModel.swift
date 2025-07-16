@@ -7,10 +7,33 @@
 
 import Foundation
 
+protocol PokemonListViewModelDelegate: AnyObject {
+    func didUpdatePokemonList()
+    func didFaildWithError(_ message: String)
+}
+
 final class PokemonListViewModel {
-    private(set) var pokemons: [String] = []
+    weak var delegate: PokemonListViewModelDelegate?
+    private let service: PokemonServiceProtocol
+    private(set) var pokemons: [Pokemon] = []
     
-    func getPokemon(at index: Int) -> String {
+    init (service: PokemonServiceProtocol = PokemonService()) {
+        self.service = service
+    }
+    
+    func fetchPokemons() {
+        service.fetchPokemonList { [weak self] result in
+            switch result {
+            case .success(let pokemons):
+                self?.pokemons = pokemons
+                self?.delegate?.didUpdatePokemonList()
+            case .failure(let error):
+                self?.delegate?.didFaildWithError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getPokemon(at index: Int) -> Pokemon {
         return pokemons[index]
     }
     
