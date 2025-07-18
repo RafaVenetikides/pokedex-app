@@ -33,9 +33,9 @@ class PokemonDetailViewController: UIViewController, PokemonDetailViewModelDeleg
         viewModel.fetchPokemonDetail()
     }
     
-    func didLoadPokemonDetail(detail: PokemonDetail) {
+    func didLoadPokemonDetail(detail: PokemonDetail, isFavorited: Bool) {
         DispatchQueue.main.async {
-            self.pokemonDetailView.configure(with: detail)
+            self.pokemonDetailView.configure(with: detail, isFavorited: isFavorited)
         }
     }
     
@@ -48,8 +48,7 @@ class PokemonDetailViewController: UIViewController, PokemonDetailViewModelDeleg
 
 extension PokemonDetailViewController: PokemonDetailViewDelegate {
     func didTapFavorite() {
-        // TODO: Add toggle
-//        viewModel.toggleFavorite()
+        viewModel.toggleFavorite()
     }
 }
 
