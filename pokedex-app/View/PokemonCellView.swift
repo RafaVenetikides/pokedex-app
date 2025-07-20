@@ -32,7 +32,8 @@ class PokemonCellView: UIView {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+//        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 12)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,7 +41,8 @@ class PokemonCellView: UIView {
     
     private let numberLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14)
+//        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 8)
         label.textColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

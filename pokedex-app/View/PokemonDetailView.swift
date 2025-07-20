@@ -62,7 +62,8 @@ class PokemonDetailView: UIView {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 28)
+//        label.font = UIFont.boldSystemFont(ofSize: 28)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 24)
         label.textAlignment = .center
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +72,8 @@ class PokemonDetailView: UIView {
     
     private let typeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+//        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 14)
         label.textAlignment = .center
         label.textColor = .white
         label.layer.cornerRadius = 8
@@ -83,7 +85,8 @@ class PokemonDetailView: UIView {
     
     private let heightLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+//        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 12)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -92,7 +95,8 @@ class PokemonDetailView: UIView {
     
     private let weightLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+//        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 12)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -157,7 +161,7 @@ class PokemonDetailView: UIView {
             imageView.widthAnchor.constraint(equalToConstant: 200),
             
             typeLabel.heightAnchor.constraint(equalToConstant: 30),
-            typeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            typeLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 160),
         ])
     }
     

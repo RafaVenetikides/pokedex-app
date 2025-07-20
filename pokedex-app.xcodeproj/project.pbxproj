@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		B1C3613E2E2ABBEB000A623C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B12D23662E26D4FA00CD1A3E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B12D236D2E26D4FA00CD1A3E;
+			remoteInfo = "pokedex-app";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B12D236E2E26D4FA00CD1A3E /* pokedex-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pokedex-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1C3613A2E2ABBEB000A623C /* pokedex-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pokedex-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -17,6 +28,13 @@
 				Info.plist,
 			);
 			target = B12D236D2E26D4FA00CD1A3E /* pokedex-app */;
+		};
+		B1C3614A2E2D5F06000A623C /* Exceptions for "pokedex-appTests" folder in "pokedex-appTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = B1C361392E2ABBEB000A623C /* pokedex-appTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -29,10 +47,25 @@
 			path = "pokedex-app";
 			sourceTree = "<group>";
 		};
+		B1C3613B2E2ABBEB000A623C /* pokedex-appTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B1C3614A2E2D5F06000A623C /* Exceptions for "pokedex-appTests" folder in "pokedex-appTests" target */,
+			);
+			path = "pokedex-appTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B12D236B2E26D4FA00CD1A3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C361372E2ABBEB000A623C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				B12D23702E26D4FA00CD1A3E /* pokedex-app */,
+				B1C3613B2E2ABBEB000A623C /* pokedex-appTests */,
 				B12D236F2E26D4FA00CD1A3E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				B12D236E2E26D4FA00CD1A3E /* pokedex-app.app */,
+				B1C3613A2E2ABBEB000A623C /* pokedex-appTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +118,29 @@
 			productReference = B12D236E2E26D4FA00CD1A3E /* pokedex-app.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1C361392E2ABBEB000A623C /* pokedex-appTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1C361402E2ABBEB000A623C /* Build configuration list for PBXNativeTarget "pokedex-appTests" */;
+			buildPhases = (
+				B1C361362E2ABBEB000A623C /* Sources */,
+				B1C361372E2ABBEB000A623C /* Frameworks */,
+				B1C361382E2ABBEB000A623C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B1C3613F2E2ABBEB000A623C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B1C3613B2E2ABBEB000A623C /* pokedex-appTests */,
+			);
+			name = "pokedex-appTests";
+			packageProductDependencies = (
+			);
+			productName = "pokedex-appTests";
+			productReference = B1C3613A2E2ABBEB000A623C /* pokedex-appTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +153,10 @@
 				TargetAttributes = {
 					B12D236D2E26D4FA00CD1A3E = {
 						CreatedOnToolsVersion = 16.3;
+					};
+					B1C361392E2ABBEB000A623C = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = B12D236D2E26D4FA00CD1A3E;
 					};
 				};
 			};
@@ -113,12 +175,20 @@
 			projectRoot = "";
 			targets = (
 				B12D236D2E26D4FA00CD1A3E /* pokedex-app */,
+				B1C361392E2ABBEB000A623C /* pokedex-appTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B12D236C2E26D4FA00CD1A3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1C361382E2ABBEB000A623C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +205,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B1C361362E2ABBEB000A623C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B1C3613F2E2ABBEB000A623C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B12D236D2E26D4FA00CD1A3E /* pokedex-app */;
+			targetProxy = B1C3613E2E2ABBEB000A623C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B12D23822E26D4FA00CD1A3E /* Debug */ = {
@@ -313,6 +398,44 @@
 			};
 			name = Release;
 		};
+		B1C361412E2ABBEB000A623C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2Q5VC69BFD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pokedex-appTests/Info.plist";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.venetikides..pokedex-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pokedex-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/pokedex-app";
+			};
+			name = Debug;
+		};
+		B1C361422E2ABBEB000A623C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2Q5VC69BFD;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pokedex-appTests/Info.plist";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.venetikides..pokedex-appTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pokedex-app.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/pokedex-app";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -330,6 +453,15 @@
 			buildConfigurations = (
 				B12D23822E26D4FA00CD1A3E /* Debug */,
 				B12D23832E26D4FA00CD1A3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1C361402E2ABBEB000A623C /* Build configuration list for PBXNativeTarget "pokedex-appTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1C361412E2ABBEB000A623C /* Debug */,
+				B1C361422E2ABBEB000A623C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
