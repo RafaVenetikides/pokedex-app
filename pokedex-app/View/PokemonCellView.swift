@@ -21,6 +21,8 @@ class PokemonCellView: UIView {
         return view
     }()
     
+    private let gradientLayer = CAGradientLayer()
+    
     private let pokemonImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +35,7 @@ class PokemonCellView: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
 //        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.font = UIFont(name: "PKMN-RBYGSC", size: 12)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 15)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -42,8 +44,8 @@ class PokemonCellView: UIView {
     private let numberLabel: UILabel = {
         let label = UILabel()
 //        label.font = UIFont.systemFont(ofSize: 14)
-        label.font = UIFont(name: "PKMN-RBYGSC", size: 8)
-        label.textColor = .darkGray
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 12)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -60,6 +62,17 @@ class PokemonCellView: UIView {
         self.addSubview(containerView)
         containerView.addSubview(pokemonImageView)
         containerView.addSubview(infoStackView)
+        containerView.layer.insertSublayer(gradientLayer, at: 0)
+        
+        gradientLayer.colors = [
+            UIColor.customCellWhite.cgColor,
+            UIColor.customCellRed.cgColor,
+        ]
+        
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        
+        gradientLayer.locations = [0.5, 0.5]
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
@@ -77,6 +90,13 @@ class PokemonCellView: UIView {
             infoStackView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             infoStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -12)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradientLayer.frame = containerView.bounds
+        gradientLayer.cornerRadius = containerView.layer.cornerRadius
+        gradientLayer.masksToBounds = true
     }
     
     override init(frame: CGRect) {
