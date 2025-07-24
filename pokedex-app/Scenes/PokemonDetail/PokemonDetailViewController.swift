@@ -1,5 +1,5 @@
 //
-//  PokemonDetialViewController.swift
+//  PokemonDetailViewController.swift
 //  pokedex-app
 //
 //  Created by Rafael Venetikides on 16/07/25.

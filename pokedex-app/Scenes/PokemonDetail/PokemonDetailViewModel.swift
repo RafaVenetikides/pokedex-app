@@ -32,6 +32,7 @@ final class PokemonDetailViewModel {
     
     func fetchPokemonDetail() {
         guard let url = url else {
+            delegate?.didFailToLoadDetail(with: ServiceError.invalidURL)
             return
         }
         

@@ -28,8 +28,6 @@ class NetworkClient: NetworkClientProtocol {
         
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
-                print("🛑 Erro de rede em NetworkClient: \(error.localizedDescription)")
-                    print("📋 Detalhes completos: \(error)")
                 completion(.failure(error))
                 return
             }
