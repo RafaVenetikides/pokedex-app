@@ -50,6 +50,10 @@ extension PokemonDetailViewController: PokemonDetailViewDelegate {
     func didTapFavorite() {
         viewModel.toggleFavorite()
     }
+    
+    func didTapImage() {
+        viewModel.playPokemonSound()
+    }
 }
 
 extension UIViewController {

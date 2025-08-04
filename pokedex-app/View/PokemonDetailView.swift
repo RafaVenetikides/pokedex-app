@@ -9,12 +9,11 @@ import UIKit
 
 protocol PokemonDetailViewDelegate: AnyObject{
     func didTapFavorite()
+    func didTapImage()
 }
 
 class PokemonDetailView: UIView {
     weak var delegate: PokemonDetailViewDelegate?
-    
-    var onImageTap: (() -> Void)?
     
     private var isFavorited = false {
         didSet {
@@ -26,6 +25,10 @@ class PokemonDetailView: UIView {
     @objc private func favoriteTapped() {
         isFavorited.toggle()
         delegate?.didTapFavorite()
+    }
+    
+    @objc private func imageTapped() {
+        delegate?.didTapImage()
     }
     
     private lazy var favoriteButton: UIButton = {
@@ -44,12 +47,14 @@ class PokemonDetailView: UIView {
         return view
     }()
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 12
+        iv.isUserInteractionEnabled = true
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageTapped)))
         
         iv.layer.shadowColor = UIColor.black.cgColor
         iv.layer.shadowOpacity = 0.2

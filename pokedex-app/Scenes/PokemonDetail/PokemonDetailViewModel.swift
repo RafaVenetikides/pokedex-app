@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 protocol PokemonDetailViewModelDelegate: AnyObject {
     func didLoadPokemonDetail(detail: PokemonDetail, isFavorited: Bool)
@@ -20,14 +21,18 @@ final class PokemonDetailViewModel {
     weak var delegate: PokemonDetailViewModelDelegate?
     private var currentDetail: PokemonDetail?
     
+    private let soundService: PokemonSoundServiceProtocol
+    
     init(
         url: URL?,
         service: PokemonServiceProtocol = PokemonService(),
-        repository: FavoritePokemonRepositoryProtocol = FavoritePokemonUserDefaultsRepository.shared
+        repository: FavoritePokemonRepositoryProtocol = FavoritePokemonUserDefaultsRepository.shared,
+        soundService: PokemonSoundServiceProtocol = PokemonSoundService()
     ) {
         self.url = url
         self.service = service
         self.repository = repository
+        self.soundService = soundService
     }
     
     func fetchPokemonDetail() {
@@ -58,6 +63,11 @@ final class PokemonDetailViewModel {
         } else {
             repository.add(name)
         }
+    }
+    
+    func playPokemonSound() {
+        guard let pokemon = currentDetail else { return }
+        soundService.playSound(for: pokemon.name)
     }
     
     private func isFavorited() -> Bool {

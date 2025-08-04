@@ -23,25 +23,20 @@ final class PokemonService: PokemonServiceProtocol {
     func fetchPokemonList(completion: @escaping (Result<[Pokemon], Error>) -> Void) {
         let urlString = "https://pokeapi.co/api/v2/pokemon?limit=151"
         
-        func performRequest(retryCount: Int = 1) {
+        func performRequest() {
             networkClient.fetch(from: urlString, decoteTo: PokemonListResponse.self) { result in
                 switch result {
                 case .success(let response):
                     let pokemons = response.results.map { $0.toDomainModel() }
                     completion(.success(pokemons))
                 case .failure(let error):
-                    print("❌ Falha na requisição: \(error.localizedDescription)")
-                    if retryCount > 0 {
-                        print("🔁 Tentando novamente...")
-                        performRequest(retryCount: retryCount - 1)
-                    } else {
                         completion(.failure(error))
-                    }
+                    
                 }
             }
         }
         
-        performRequest(retryCount: 3)
+        performRequest()
     }
     
     func fetchPokemonDetail(from url: URL, completion: @escaping (Result<PokemonDetail, any Error>) -> Void) {
