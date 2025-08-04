@@ -17,7 +17,7 @@ class PokemonDetailView: UIView {
     
     private var isFavorited = false {
         didSet {
-            let imageName = isFavorited ? "star.fill" : "star"
+            let imageName = isFavorited ? "heart.fill" : "heart"
             favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
         }
     }
@@ -33,8 +33,8 @@ class PokemonDetailView: UIView {
     
     private lazy var favoriteButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "star"), for: .normal)
-        button.tintColor = .systemYellow
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.tintColor = .systemRed
         button.addTarget(self, action: #selector(favoriteTapped), for: .touchUpInside)
         return button
     }()
@@ -42,7 +42,7 @@ class PokemonDetailView: UIView {
     private let cardView: UIView = {
        let view = UIView()
         view.backgroundColor = .white
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 40
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -68,7 +68,7 @@ class PokemonDetailView: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
 //        label.font = UIFont.boldSystemFont(ofSize: 28)
-        label.font = UIFont(name: "PKMN-RBYGSC", size: 24)
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 32)
         label.textAlignment = .center
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +83,16 @@ class PokemonDetailView: UIView {
         label.textColor = .white
         label.layer.cornerRadius = 8
         label.clipsToBounds = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    private let typeTitle: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "PKMN-RBYGSC", size: 18)
+        label.text = "Types:"
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -121,8 +131,8 @@ class PokemonDetailView: UIView {
     private lazy var mainStackView: UIStackView = {
         let stack = UIStackView(
             arrangedSubviews: [
-                imageView,
                 nameLabel,
+                typeTitle,
                 typeLabel,
                 infoStackView,
                 favoriteButton,
@@ -131,7 +141,7 @@ class PokemonDetailView: UIView {
         
         stack.axis = .vertical
         stack.alignment = .center
-        stack.spacing = 16
+        stack.spacing = 20
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
@@ -149,18 +159,21 @@ class PokemonDetailView: UIView {
     
     private func setupLayout() {
         addSubview(cardView)
+        addSubview(imageView)
         cardView.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([
-            cardView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
-            cardView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            cardView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            cardView.bottomAnchor.constraint(lessThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            cardView.widthAnchor.constraint(equalTo: widthAnchor),
+            cardView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            cardView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            mainStackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 20),
+            imageView.bottomAnchor.constraint(equalTo: cardView.topAnchor, constant: -30),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            
+            mainStackView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 30),
             mainStackView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
             mainStackView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -20),
-            mainStackView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -20),
             
             imageView.heightAnchor.constraint(equalToConstant: 200),
             imageView.widthAnchor.constraint(equalToConstant: 200),
